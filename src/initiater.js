@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 
 import App from './app';
 
-import { getInitData } from './apiservices';
+import { getInitData, putData } from './apiservices';
 
 class Initiater extends Component {
   componentDidMount() {
+    // putData();
     getInitData();
   }
 
