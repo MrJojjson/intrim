@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 
 import App from './app';
 
-import { getInitData, newUser } from './apiservices';
+import { getUser, newUser, loginUser } from './apiservices';
 
 class Initiater extends Component {
   componentDidMount() {
-    newUser();
-    // getInitData();
+    // newUser();
+    // getUser();
+    loginUser();
   }
 
   render() {

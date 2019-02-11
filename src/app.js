@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 import { simpleAction } from './actions';
 
@@ -10,16 +11,49 @@ import MiddlePanel from './container/panelMiddle';
 
 import style from './css/app.less';
 
+import {
+  widthLeftPanel,
+} from './css';
+
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+`;
+
+const ContainerLeft = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: ${widthLeftPanel};
+  height: 100%;
+  overflow: hidden;
+`;
+
+const ContainerTopMiddle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: calc(100% - ${widthLeftPanel});
+  height: 100%;
+  background: red;
+  overflow: hidden;
+`;
+
 const App = () => (
-    <div className={style.container}>
-      <div className={style.containerLeft}>
+    <Container className={style.container}>
+      <ContainerLeft className={style.containerLeft}>
         <LeftPanel />
-      </div>
-      <div className={style.containerTopMiddle}>
+      </ContainerLeft>
+      <ContainerTopMiddle className={style.containerTopMiddle}>
         <TopPanel />
         <MiddlePanel />
-      </div>
-    </div>
+      </ContainerTopMiddle>
+    </Container>
 );
 
 const mapStateToProps = state => state;
