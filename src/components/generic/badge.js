@@ -5,6 +5,7 @@ import Icon from '../../container/generic/icon';
 import Text from '../../container/generic/text';
 
 import {
+  deafultLightColor,
   primaryColor,
   secondaryColor,
   elementHeight,
@@ -16,8 +17,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: '#ffffff';
-  color: ${props => (props.secondary && secondaryColor()) || primaryColor()};
+  color: ${deafultLightColor()};
+  background: ${props => (props.secondary && secondaryColor()) || primaryColor()};
   font-size: 1em;
   margin: ${margin}px;
   padding: ${padding / 2}px ${padding}px;

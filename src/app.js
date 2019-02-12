@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { simpleAction } from './actions';
-
 import LeftPanel from './container/panelLeft';
 import TopPanel from './container/panelTop';
 import MiddlePanel from './container/panelMiddle';
@@ -59,7 +57,6 @@ const App = () => (
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
-  simpleAction: () => dispatch(simpleAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

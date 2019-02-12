@@ -3,13 +3,11 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import {
+  deafultLightColor,
   primaryColor,
   secondaryColor,
   iconSize,
-  borderRadius,
-  padding,
   margin,
-  elementHeight,
 } from '../../css';
 
 const Icon = styled.button`
@@ -17,10 +15,10 @@ const Icon = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  color: ${props => (props.secondary && secondaryColor()) || primaryColor()};
-  font-size: ${iconSize}px;
+  color: ${props => (props.primary && primaryColor()) || (props.secondary && secondaryColor()) || deafultLightColor()};
   border: none;
   margin: 0px ${margin / 2}px;
+  background: transparent;
 `;
 
 const Icn = props => (

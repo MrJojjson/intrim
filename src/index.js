@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -17,7 +18,9 @@ library.add(faEnvelope, faKey, faTimes, faSearch);
 
 ReactDOM.render(
   <Provider store={store()}>
-    <Initiater />
+    <BrowserRouter>
+      <Initiater />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root'),
 );

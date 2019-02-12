@@ -4,5 +4,11 @@ body {
 }
 
 :focus {
-  outline: 3px solid #e74c3c;
+  outline: none;
+  box-shadow: 10px 10px 0px rgba(231,76,60, 0.5);
+  transition: all 0.25s;
+}
+
+:not(:focus) {
+  transition: all 0.15s;
 }

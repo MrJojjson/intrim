@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Icon from '../../container/generic/icon';
 
 import {
+  deafultLightColor,
+  fadedLightColor,
   primaryColor,
   secondaryColor,
   borderRadius,
@@ -17,7 +19,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: '#ffffff';
+  background: ${props => (props.secondary && secondaryColor()) || primaryColor()};
   color: ${props => (props.secondary && secondaryColor()) || primaryColor()};
   font-size: 1em;
   margin: ${margin}px;
@@ -29,13 +31,18 @@ const Container = styled.div`
 
 const SearchField = styled.input`
   display: flex;
-  color: ${props => (props.secondary && secondaryColor()) || primaryColor()};
+  background: ${props => (props.secondary && secondaryColor()) || primaryColor()};
+  color: ${deafultLightColor()};
   font-size: 1em;
   border: none;
   z-index: 1;
   height: 100%;
   padding: 0px ${padding}px;
   min-height: ${elementHeight}px;
+
+  &::placeholder{
+    color: ${fadedLightColor()};
+  }
 `;
 
 const Bde = props => (

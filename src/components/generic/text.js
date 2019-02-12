@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 import {
+  deafultLightColor,
+  deafultDarkColor,
   primaryColor,
   secondaryColor,
   borderRadius,
@@ -9,7 +11,7 @@ import {
   margin,
 } from '../../css';
 
-const Text = styled.text`
+const Text = styled.p`
   font-size: ${props => (
     (props.format && props.format === 'h' && 28)
     || (props.format && props.format === 'sh' && 24)
@@ -17,6 +19,9 @@ const Text = styled.text`
     || (props.format && props.format === 'md' && 18)
     || (props.format && props.format === 'sm' && 16)
   )}px;
+  padding:0;
+  margin:0;
+  color: ${props => (props.secondary && deafultLightColor()) || deafultDarkColor()};
 `;
 
 const Txt = props => (

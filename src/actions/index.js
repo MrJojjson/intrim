@@ -1,6 +1,14 @@
-export const simpleAction = () => (dispatch) => {
+export const addValidationError = (id, value) => (dispatch) => {
   dispatch({
-    type: 'SIMPLE_ACTION',
-    payload: 'result_of_simple_action',
+    type: 'ADD_VALIDATION_ERROR',
+    id,
+    value,
+  });
+};
+
+export const removeValidationError = id => (dispatch) => {
+  dispatch({
+    type: 'REMOVE_VALIDATION_ERROR',
+    id,
   });
 };

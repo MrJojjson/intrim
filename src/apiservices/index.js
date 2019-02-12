@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 const baseURL = 'http://127.0.0.1:8081/api';
-const usersUrl = 'users';
 
 export const getUser = () => {
   const URL = `${baseURL}/getUser`;
@@ -31,6 +30,11 @@ export const newUser = (message) => {
     email,
     organisation,
     password,
+  },
+  {
+    headers: {
+      Authorization: 'Bear',
+    },
   })
     .then((response) => {
       console.log(response);
@@ -53,6 +57,6 @@ export const loginUser = (message) => {
       console.log(response);
     })
     .catch((error) => {
-      console.log(error.response);
+      console.log(error);
     });
 };

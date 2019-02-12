@@ -50,7 +50,11 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
   ],
   devServer: {
-    contentBase: './dist',
+    historyApiFallback: true,
     hot: true,
+    contentBase: './dist',
+    watchOptions: {
+      ignored: /node_modules/,
+    },
   },
 };
