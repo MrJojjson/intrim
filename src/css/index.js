@@ -10,6 +10,8 @@ export const fadedDarkColor = color => color || 'rgba(100, 100, 100, 0.5)';
 export const primaryColor = color => color || '#e74c3c';
 export const secondaryColor = color => color || '#f1c40f';
 
+export const errorColor = color => color || '#c0392b';
+
 export const widthLeftPanel = '250px';
 export const widthMiddlePanel = '100%';
 export const widthTopPanel = '100%';

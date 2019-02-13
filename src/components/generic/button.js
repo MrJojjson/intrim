@@ -29,7 +29,7 @@ const Button = styled.button`
 `;
 
 const Btn = props => (
-  <Button value="test" {...props}>
+  <Button {...props} onClick={props.onClick}>
     <Text format='md' secondary>
       {props.title || 'Button Default'}
     </Text>

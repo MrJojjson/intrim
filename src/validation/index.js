@@ -12,11 +12,11 @@ const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
-export const validateOnServer = (id, value) => {
+export const validateOnServer = (dispatch, id, value) => {
   if (id && id.toLowerCase() === 'email' && !validateEmail(value)) {
-    return;
+    return dispatch(addValidationError(id, 'Wrong format on email'));
   }
-  validateUser(id, value);
+  return validateUser(dispatch, id, value);
 };
 
 export const validateOnClient = (dispatch, id, value) => {

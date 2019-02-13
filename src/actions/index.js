@@ -12,3 +12,18 @@ export const removeValidationError = id => (dispatch) => {
     id,
   });
 };
+
+export const onChangeInput = (id, value) => (dispatch) => {
+  dispatch({
+    type: 'ON_CHANGE_INPUT',
+    id,
+    value,
+  });
+};
+
+export const registrationStep = step => (dispatch) => {
+  dispatch({
+    type: 'REGISTRATION_STEP',
+    step,
+  });
+};

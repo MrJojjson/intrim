@@ -19,26 +19,32 @@ const RegistrateNameContainer = styled.div`
 `;
 
 const RegistrateName = (props) => {
-  const { validateOnServer, validateOnClient } = props;
+  const { validateOnServer, validateOnClient, registrationStep } = props;
   return (
     <RegistrateNameContainer>
       <Input
         id='email'
         width='50'
         placeholder='Email'
-        onBlur={event => validateOnServer('email', event.target.value)}
+        onBlur={event => [
+          validateOnServer('email', event.target.value),
+        ]}
+        validate
       />
       <Input
+        id='firstname'
         width='50'
         placeholder='Firstname'
         onBlur={event => validateOnClient('firstname', event.target.value)}
+        validate
       />
       <Input
+        id='surname'
         width='50'
         placeholder='Surname'
         onBlur={event => validateOnClient('surname', event.target.value)}
       />
-      <Button title="Next" width='50' />
+      <Button title="Next" width='50' onClick={() => registrationStep(1)}/>
     </RegistrateNameContainer>
   );
 };

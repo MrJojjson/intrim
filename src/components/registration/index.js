@@ -11,6 +11,7 @@ import Search from '../../container/generic/search';
 import SearchResult from '../../container/generic/searchResult';
 
 import RegistrateName from './name';
+import RegistrationOrg from './organisation';
 
 import {
   secondaryColor, primaryColor, deafultLightColor,
@@ -48,23 +49,31 @@ const RegistrationSteps = styled.div`
   width:60%;
 `;
 
-const Registration = (props) => {
-  const { test } = props;
-  return (
-    <RegistrationContainer>
-      <RegistrationInformation>
-        <Text format='h' secondary>
-          Test if header appears!
-        </Text>
-        <Text format='md' secondary>
-          Test if medium text appears!
-        </Text>
-      </RegistrationInformation>
-      <RegistrationSteps>
-        <RegistrateName {...props}/>
-      </RegistrationSteps>
-    </RegistrationContainer>
-  );
+const DisplayRegistrationStep = (props) => {
+  const { registrationStep } = props.store;
+  if (registrationStep === undefined || registrationStep === null || registrationStep === 0) {
+    return <RegistrateName {...props}/>;
+  }
+  if (registrationStep === 1) {
+    return <RegistrationOrg {...props}/>;
+  }
+  return null;
 };
+
+const Registration = props => (
+  <RegistrationContainer>
+    <RegistrationInformation>
+      <Text format='h' secondary>
+        Test if header appears!
+      </Text>
+      <Text format='md' secondary>
+        Test if medium text appears!
+      </Text>
+    </RegistrationInformation>
+    <RegistrationSteps>
+      {DisplayRegistrationStep(props)}
+    </RegistrationSteps>
+  </RegistrationContainer>
+);
 
 export default Registration;
