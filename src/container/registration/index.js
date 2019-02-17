@@ -12,8 +12,8 @@ const Registration = props => <RegistrationComponent {...props} />;
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
-  validateOnServer: (id, value) => validateOnServer(dispatch, id, value),
-  validateOnClient: (id, value) => validateOnClient(dispatch, id, value),
+  validateOnServer: (id, value, type) => validateOnServer(dispatch, id, value, type),
+  validateOnClient: (id, value, type) => validateOnClient(dispatch, id, value, type),
   registrationStep: step => dispatch(registrationStep(step)),
 });
 

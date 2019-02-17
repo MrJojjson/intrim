@@ -10,8 +10,11 @@ import Text from '../../container/generic/text';
 import Search from '../../container/generic/search';
 import SearchResult from '../../container/generic/searchResult';
 
-import RegistrateName from './name';
-import RegistrationOrg from './organisation';
+import RegistrateUser from './registrateUser';
+import RegistrateOrganisation from './registrateOrganisation';
+import RegistrationInit from './registrationInit';
+
+import registrationData from './texts';
 
 import {
   secondaryColor, primaryColor, deafultLightColor,
@@ -51,23 +54,32 @@ const RegistrationSteps = styled.div`
 
 const DisplayRegistrationStep = (props) => {
   const { registrationStep } = props.store;
-  if (registrationStep === undefined || registrationStep === null || registrationStep === 0) {
-    return <RegistrateName {...props}/>;
+  if (registrationStep === 'NEWUSER') {
+    return <RegistrateUser {...props}/>;
   }
-  if (registrationStep === 1) {
-    return <RegistrationOrg {...props}/>;
+  if (registrationStep === 'NEWORGANISATION') {
+    return <RegistrateOrganisation {...props}/>;
   }
-  return null;
+  if (registrationStep === 'REGINIT') {
+    return <RegistrationInit {...props}/>;
+  }
+  return <RegistrationInit {...props}/>;
+};
+
+const DisplayRegistrationText = (props, text) => {
+  const { registrationStep } = props.store;
+  const data = registrationData.filter(r => r.id === registrationStep).map(reg => reg[text]).toString();
+  return data;
 };
 
 const Registration = props => (
   <RegistrationContainer>
     <RegistrationInformation>
       <Text format='h' secondary>
-        Test if header appears!
+        {DisplayRegistrationText(props, 'header')}
       </Text>
       <Text format='md' secondary>
-        Test if medium text appears!
+        {DisplayRegistrationText(props, 'subHeader')}
       </Text>
     </RegistrationInformation>
     <RegistrationSteps>

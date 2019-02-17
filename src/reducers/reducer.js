@@ -1,6 +1,10 @@
 import { omit } from 'lodash';
 
-export default (state = {}, action) => {
+const initState = {
+  registrationStep: 'REGINIT',
+};
+
+export default (state = initState || {}, action) => {
   switch (action.type) {
     case 'ON_CHANGE_INPUT':
       return {
@@ -26,7 +30,7 @@ export default (state = {}, action) => {
     case 'REGISTRATION_STEP':
       return {
         ...state,
-        registrationStep: state.registrationStep ? state.registrationStep + action.step : 0 + action.step,
+        registrationStep: action.step,
       };
     default:
       return state;

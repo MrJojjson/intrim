@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { getUser, newUser, loginUser } from '../apiservices';
-import { validateUser } from '../apiservices/validation';
+import { validateUser, validateOrganisation } from '../apiservices/validation';
 
 import { addValidationError, removeValidationError } from '../actions';
 
@@ -12,14 +12,20 @@ const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
-export const validateOnServer = (dispatch, id, value) => {
-  if (id && id.toLowerCase() === 'email' && !validateEmail(value)) {
-    return dispatch(addValidationError(id, 'Wrong format on email'));
+export const validateOnServer = (dispatch, id, value, type) => {
+  if (type === 'user') {
+    if (id && id.toLowerCase() === 'email' && !validateEmail(value)) {
+      return dispatch(addValidationError(id, 'Wrong format on email'));
+    }
+    return validateUser(dispatch, id, value);
   }
-  return validateUser(dispatch, id, value);
+  if (type === 'organisation') {
+    return validateOrganisation(dispatch, id, value);
+  }
+  return null;
 };
 
-export const validateOnClient = (dispatch, id, value) => {
+export const validateOnClient = (dispatch, id, value, type) => {
   if (!id) {
     return { success: false, data: 'Id must be set' };
   }
