@@ -10,7 +10,7 @@ const Input = props => <InputComponent {...props} />;
 const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
-  changeInputText: (id, value) => dispatch(onChangeInput(id, value)),
+  changeInputText: (page, id, value) => dispatch(onChangeInput(page, id, value)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Input);

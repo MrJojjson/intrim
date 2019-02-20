@@ -1,16 +1,20 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import { validateButton } from '../../validation';
+
 import Text from '../../container/generic/text';
 
 import {
   deafultLightColor,
   primaryColor,
   secondaryColor,
+  disabledColor,
   borderRadius,
   padding,
   margin,
   elementHeight,
+  disabled,
 } from '../../css';
 
 const Button = styled.button`
@@ -26,14 +30,25 @@ const Button = styled.button`
   cursor: pointer;
   min-height: ${elementHeight + padding * 2}px;
   width: ${props => (props.width <= 100 && props.width) || 35}%;
+  ${props => props.valid !== undefined && !props.valid && disabled};
 `;
 
-const Btn = props => (
-  <Button {...props} onClick={props.onClick}>
-    <Text format='md' secondary>
-      {props.title || 'Button Default'}
-    </Text>
-  </Button>
-);
+const Btn = (props) => {
+  const {
+    store,
+    page,
+    validation,
+    title,
+    onClick,
+  } = props;
+
+  return (
+    <Button {...props} onClick={onClick} valid={validation && page && validateButton(store, page, validation)}>
+      <Text format='md' secondary>
+        {title || 'Button Default'}
+      </Text>
+    </Button>
+  );
+};
 
 export default Btn;

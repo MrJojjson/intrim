@@ -18,6 +18,8 @@ const RegistrateUserContainer = styled.div`
   width: 100%;
 `;
 
+const PAGE = 'user';
+
 const RegistrateUser = (props) => {
   const { validateOnServer, validateOnClient, registrationStep } = props;
   return (
@@ -26,26 +28,40 @@ const RegistrateUser = (props) => {
         id='email'
         width='50'
         placeholder='Email'
-        onBlur={event => [
-          validateOnServer('email', event.target.value, 'user'),
-        ]}
+        page={PAGE}
+        onBlur={event => validateOnServer(PAGE, 'email', event.target.value, 'user')}
         validate
       />
       <Input
         id='firstname'
         width='50'
         placeholder='Firstname'
-        onBlur={event => validateOnClient('firstname', event.target.value, 'user')}
+        page={PAGE}
+        onBlur={event => validateOnClient(PAGE, 'firstname', event.target.value, 'user')}
         validate
       />
       <Input
         id='surname'
         width='50'
         placeholder='Surname'
-        onBlur={event => validateOnClient('surname', event.target.value, 'user')}
+        page={PAGE}
+        onBlur={event => validateOnClient(PAGE, 'surname', event.target.value, 'user')}
+        validate
       />
-      <Button title="Back" width='50' onClick={() => registrationStep('REGINIT')}/>
-      <Button title="Next" width='50' onClick={() => registrationStep(1)}/>
+      <Button
+        title="Back"
+        width='50'
+        onClick={() => registrationStep('REGINIT')}
+        validation={['email']}
+        page={PAGE}
+      />
+      <Button
+        title="Next"
+        width='50'
+        onClick={() => registrationStep('REGINIT')}
+        validation={['email', 'firstname', 'surname']}
+        page={PAGE}
+      />
     </RegistrateUserContainer>
   );
 };

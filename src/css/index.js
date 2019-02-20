@@ -11,6 +11,7 @@ export const primaryColor = color => color || '#e74c3c';
 export const secondaryColor = color => color || '#f1c40f';
 
 export const errorColor = color => color || '#c0392b';
+export const disabledColor = color => color || 'rgba(189, 195, 199, 0.75)';
 
 export const widthLeftPanel = '250px';
 export const widthMiddlePanel = '100%';
@@ -24,3 +25,9 @@ export const iconSize = 'lg';
 export const margin = 10;
 export const padding = 10;
 export const borderRadius = 5;
+
+export const disabled = {
+  background: disabledColor(),
+  border: `1px solid ${disabledColor()}`,
+  'pointer-events': 'none',
+};

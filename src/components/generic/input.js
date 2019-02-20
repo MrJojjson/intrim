@@ -47,15 +47,16 @@ const Inp = (props) => {
     store,
     id,
     changeInputText,
+    page,
   } = props;
   return (
     <InputContainer {...props}>
       <Input
-        onChange={event => changeInputText(id, event.target.value)}
-        value={getInputValue(store, id)}
+        value={getInputValue(store, page, id)}
+        onChange={event => changeInputText(page, id, event.target.value)}
         {...props}
       />
-      {validate && <ValidationError show={getErrorValidation(store, id)}/>}
+      {validate && <ValidationError show={getErrorValidation(store, page, id)}/>}
     </InputContainer>
   );
 };
