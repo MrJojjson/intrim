@@ -41,6 +41,28 @@ const Input = styled.input`
   }
 `;
 
+const inputValue = (props) => {
+  const { store, page, id } = props;
+  return getInputValue(store, page, id);
+};
+
+const onBlurEvent = (props) => {
+  const {
+    page,
+    id,
+    validate,
+    validateOnServer,
+    validateOnClient,
+  } = props;
+
+  const value = inputValue(props);
+  if (validate.toLowerCase() === 'onclient') {
+    return validateOnClient(page, id, value);
+  }
+  return validateOnServer(page, id, value);
+};
+
+
 const Inp = (props) => {
   const {
     validate,
@@ -48,12 +70,15 @@ const Inp = (props) => {
     id,
     changeInputText,
     page,
+    secure,
   } = props;
   return (
     <InputContainer {...props}>
       <Input
-        value={getInputValue(store, page, id)}
+        value={inputValue(props)}
         onChange={event => changeInputText(page, id, event.target.value)}
+        onBlur={() => validate && onBlurEvent(props)}
+        type={secure ? 'password' : 'text'}
         {...props}
       />
       {validate && <ValidationError show={getErrorValidation(store, page, id)}/>}

@@ -21,7 +21,7 @@ const RegistrateUserContainer = styled.div`
 const PAGE = 'user';
 
 const RegistrateUser = (props) => {
-  const { validateOnServer, validateOnClient, registrationStep } = props;
+  const { registrationStep } = props;
   return (
     <RegistrateUserContainer>
       <Input
@@ -29,30 +29,26 @@ const RegistrateUser = (props) => {
         width='50'
         placeholder='Email'
         page={PAGE}
-        onBlur={event => validateOnServer(PAGE, 'email', event.target.value, 'user')}
-        validate
+        validate='onserver'
       />
       <Input
         id='firstname'
         width='50'
         placeholder='Firstname'
         page={PAGE}
-        onBlur={event => validateOnClient(PAGE, 'firstname', event.target.value, 'user')}
-        validate
+        validate='onclient'
       />
       <Input
         id='surname'
         width='50'
         placeholder='Surname'
         page={PAGE}
-        onBlur={event => validateOnClient(PAGE, 'surname', event.target.value, 'user')}
-        validate
+        validate='onclient'
       />
       <Button
         title="Back"
         width='50'
         onClick={() => registrationStep('REGINIT')}
-        validation={['email']}
         page={PAGE}
       />
       <Button

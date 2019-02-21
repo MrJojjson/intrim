@@ -20,32 +20,31 @@ const RegistrateOrganisationContainer = styled.div`
 const PAGE = 'organisation';
 
 const RegistrateOrganisation = (props) => {
-  const { validateOnServer, registrationStep, store } = props;
+  const { store, registrationStep } = props;
   const registrateValues = getInputValues(store, PAGE, ['organisationName', 'organisationAdminEmail', 'organisationPassword']);
-  console.log('registrate values', registrateValues);
   return (
     <RegistrateOrganisationContainer>
       <Input
-        id='organisationName'
+        id='name'
         width='50'
         placeholder='Organisation´s name'
         page={PAGE}
-        onBlur={event => validateOnServer(PAGE, 'name', event.target.value, 'organisation')}
+        validate='onserver'
       />
       <Input
-        id='organisationAdminEmail'
+        id='email'
         width='50'
         placeholder='Admin email'
         page={PAGE}
-        onBlur={event => validateOnServer(PAGE, 'email', event.target.value, 'organisation')}
-        validate
+        validate='onserver'
       />
       <Input
-        id='organisationPassword'
+        id='password'
         width='50'
         placeholder='Organisation´s admin password'
         page={PAGE}
-        onBlur={event => validateOnServer(PAGE, 'password', event.target.value, 'organisation')}
+        secure
+        validate='onserver'
       />
       <Button title="Back" width='50' onClick={() => registrationStep('REGINIT')}/>
       <Button

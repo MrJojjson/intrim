@@ -12,20 +12,20 @@ const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
-export const validateOnServer = (dispatch, page, id, value, type) => {
+export const validateOnServer = (dispatch, page, id, value) => {
   if (id && id.toLowerCase() === 'email' && !validateEmail(value)) {
     return dispatch(addValidationError(page, id, 'Wrong format on email'));
   }
-  if (type === 'user') {
+  if (page === 'user') {
     return validateUser(dispatch, page, id, value);
   }
-  if (type === 'organisation') {
+  if (page === 'organisation') {
     return validateOrganisation(dispatch, page, id, value);
   }
   return null;
 };
 
-export const validateOnClient = (dispatch, page, id, value, type) => {
+export const validateOnClient = (dispatch, page, id, value) => {
   if (!id) {
     return { success: false, data: 'Id must be set' };
   }
