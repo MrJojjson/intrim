@@ -1,3 +1,5 @@
+
+/* VALIDATION */
 export const addValidationError = (page, id, value) => (dispatch) => {
   dispatch({
     type: 'ADD_VALIDATION_ERROR',
@@ -15,6 +17,7 @@ export const removeValidationError = (page, id) => (dispatch) => {
   });
 };
 
+/* ON CHANGE */
 export const onChangeInput = (page, id, value) => (dispatch) => {
   dispatch({
     type: 'ON_CHANGE_INPUT',
@@ -28,5 +31,15 @@ export const registrationStep = step => (dispatch) => {
   dispatch({
     type: 'REGISTRATION_STEP',
     step,
+  });
+};
+
+/* ON ADD */
+export const onAddToArray = (page, name, object) => (dispatch) => {
+  dispatch({
+    type: 'ON_ADD_TO_ARRAY',
+    page,
+    name,
+    object,
   });
 };

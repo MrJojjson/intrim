@@ -22,8 +22,8 @@ const RegistrateInit = (props) => {
   const { registrationStep } = props;
   return (
     <RegistrationInitContainer>
-      <Button title="New user" width='50' onClick={() => registrationStep('NEWUSER')}/>
-      <Button title="New organisation" width='50' onClick={() => registrationStep('NEWORGANISATION')}/>
+      <Button title="New user" width='50' onClick={() => registrationStep('REG_NEW_USER')}/>
+      <Button title="New organisation" width='50' onClick={() => registrationStep('REG_NEW_ORGANISATION')}/>
     </RegistrationInitContainer>
   );
 };

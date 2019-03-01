@@ -19,9 +19,9 @@ const RegistrateOrganisationContainer = styled.div`
 
 const PAGE = 'organisation';
 
-const RegistrateOrganisation = (props) => {
-  const { store, registrationStep } = props;
-  const registrateValues = getInputValues(store, PAGE, ['organisationName', 'organisationAdminEmail', 'organisationPassword']);
+export const RegistrateOrganisation = (props) => {
+  const { store, registrationStep, onAddToArray } = props;
+  const registrateValues = getInputValues(store, PAGE, ['name', 'email', 'password']);
   return (
     <RegistrateOrganisationContainer>
       <Input
@@ -30,6 +30,7 @@ const RegistrateOrganisation = (props) => {
         placeholder='Organisation´s name'
         page={PAGE}
         validate='onserver'
+        addBtn={value => onAddToArray(PAGE, 'emailEndings', value)}
       />
       <Input
         id='email'
@@ -46,15 +47,37 @@ const RegistrateOrganisation = (props) => {
         secure
         validate='onserver'
       />
-      <Button title="Back" width='50' onClick={() => registrationStep('REGINIT')}/>
+      <Button title="Back" width='50' onClick={() => registrationStep('REG_INIT')}/>
       <Button
         title="Next"
         width='50'
-        onClick={() => registrateOrganisation(registrateValues)}
-        validation={['organisationName']}
+        // onClick={() => registrateOrganisation(registrateValues)}
+        onClick={() => registrationStep('REG_EMAIL_ENDINGS')}
+        validation={['name', 'email', 'password']}
+        page={PAGE}
       />
     </RegistrateOrganisationContainer>
   );
 };
 
-export default RegistrateOrganisation;
+export const EmailEndings = (props) => {
+  const { store, registrationStep, onAddToArray } = props;
+  const registrateValues = getInputValues(store, PAGE, ['emailEndings']);
+  return (
+    <RegistrateOrganisationContainer>
+      <Input
+        id='emailEndings'
+        width='50'
+        placeholder='Email endings'
+        page={PAGE}
+        validate='onclient'
+      />
+      <Button title="Back" width='50' onClick={() => registrationStep('REG_NEW_ORGANISATION')}/>
+      <Button
+        title="Next"
+        width='50'
+        onClick={() => registrateOrganisation(registrateValues)}
+      />
+    </RegistrateOrganisationContainer>
+  );
+};

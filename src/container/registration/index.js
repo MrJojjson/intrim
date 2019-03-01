@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { registrationStep } from '../../actions';
+import { registrationStep, onAddToArray } from '../../actions';
 
 import { validateOnClient, validateOnServer } from '../../validation';
 
@@ -15,6 +15,7 @@ const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   registrationStep: step => dispatch(registrationStep(step)),
+  onAddToArray: (page, name, object) => dispatch(onAddToArray(page, name, object)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration);

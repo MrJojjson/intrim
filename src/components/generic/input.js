@@ -4,9 +4,11 @@ import styled from 'styled-components';
 import { getErrorValidation, getInputValue } from '../../selectors';
 
 import ValidationError from '../../container/generic/validationError';
+import Button from './button';
 
 import {
   deafultDarkColor,
+  deafultLightColor,
   fadedDarkColor,
   primaryColor,
   secondaryColor,
@@ -71,6 +73,7 @@ const Inp = (props) => {
     changeInputText,
     page,
     secure,
+    addBtn,
   } = props;
   return (
     <InputContainer {...props}>
@@ -82,6 +85,7 @@ const Inp = (props) => {
         {...props}
       />
       {validate && <ValidationError show={getErrorValidation(store, page, id)}/>}
+      {addBtn && <Button {...props} inputValue={inputValue(props)}/>}
     </InputContainer>
   );
 };

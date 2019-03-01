@@ -10,7 +10,7 @@ import {
   margin,
 } from '../../css';
 
-const Icon = styled.button`
+const Icon = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;

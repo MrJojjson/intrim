@@ -11,7 +11,7 @@ import Search from '../../container/generic/search';
 import SearchResult from '../../container/generic/searchResult';
 
 import RegistrateUser from './registrateUser';
-import RegistrateOrganisation from './registrateOrganisation';
+import { RegistrateOrganisation, EmailEndings } from './registrateOrganisation';
 import RegistrationInit from './registrationInit';
 
 import registrationData from './texts';
@@ -54,13 +54,16 @@ const RegistrationSteps = styled.div`
 
 const DisplayRegistrationStep = (props) => {
   const { registrationStep } = props.store;
-  if (registrationStep === 'NEWUSER') {
+  if (registrationStep === 'REG_NEW_USER') {
     return <RegistrateUser {...props}/>;
   }
-  if (registrationStep === 'NEWORGANISATION') {
+  if (registrationStep === 'REG_NEW_ORGANISATION') {
     return <RegistrateOrganisation {...props}/>;
   }
-  if (registrationStep === 'REGINIT') {
+  if (registrationStep === 'REG_EMAIL_ENDINGS') {
+    return <EmailEndings {...props}/>;
+  }
+  if (registrationStep === 'REG_INIT') {
     return <RegistrationInit {...props}/>;
   }
   return <RegistrationInit {...props}/>;

@@ -1,4 +1,5 @@
 import { omit, set, updateWith } from 'lodash';
+import { path, append } from 'ramda';
 
 const initState = {
   registrationStep: 'REGINIT',
@@ -45,6 +46,25 @@ export default (state = initState, action) => {
         ...state,
         registrationStep: action.step,
       };
+    case 'ON_ADD_TO_ARRAY':
+      return {
+        ...state,
+        inputs: {
+          ...state.inputs,
+          [action.page]: {
+            ...state.inputs[action.page],
+            [action.name]: append(action.object, state.inputs[action.page][action.name]),
+          },
+        },
+      };
+
+      // inputs: {
+      //   ...state.inputs,
+      //   [action.page]: {
+      //     ...state.inputs[action.page],
+      //     [action.name]: set(state.inputs[action.page][action.name], action.object),
+      //   },
+      // };
     default:
       return state;
   }
