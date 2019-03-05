@@ -20,7 +20,7 @@ export const widthTopPanel = '100%';
 export const heightTopPanel = '70px';
 
 export const elementHeight = 30;
-export const iconSize = 'lg';
+export const iconSize = 'sm';
 
 export const margin = 10;
 export const padding = 10;

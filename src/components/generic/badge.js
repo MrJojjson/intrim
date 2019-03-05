@@ -13,7 +13,7 @@ import {
   margin,
 } from '../../css';
 
-const Container = styled.div`
+const Container = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,13 +27,23 @@ const Container = styled.div`
   min-height: ${elementHeight / 2}px;
 `;
 
-const Bde = props => (
-  <Container>
-    <Text format='sm'>
-      {props.title || 'Badge Default'}
-    </Text>
-    <Icon name='times'/>
-  </Container>
-);
+const Bde = (props) => {
+  const {
+    secondary,
+    title,
+    onRemoveFromArray,
+    page,
+    name,
+    id,
+  } = props;
+  return (
+    <Container>
+      <Text secondary={secondary} format='sm'>
+        {title || 'Badge Default'}
+      </Text>
+      <Icon name='times' onClick={() => onRemoveFromArray(page, name, id)}/>
+    </Container>
+  );
+};
 
 export default Bde;

@@ -57,7 +57,17 @@ export default (state = initState, action) => {
           },
         },
       };
-
+    case 'ON_REMVOE_FROM_ARRAY':
+      return {
+        ...state,
+        inputs: {
+          ...state.inputs,
+          [action.page]: {
+            ...state.inputs[action.page],
+            [action.name]: state.inputs[action.page][action.name].filter(item => item.id !== action.id),
+          },
+        },
+      };
       // inputs: {
       //   ...state.inputs,
       //   [action.page]: {

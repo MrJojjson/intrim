@@ -22,7 +22,7 @@ const Icon = styled.span`
 `;
 
 const Icn = props => (
-  <Icon>
+  <Icon {...props}>
     <FontAwesomeIcon icon={props.name || 'envelope'} size={iconSize}/>
   </Icon>
 );

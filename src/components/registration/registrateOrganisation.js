@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import Input from '../../container/generic/input';
+import Badge from '../../container/generic/badge';
 import Button from '../../container/generic/button';
+import Input from '../../container/generic/input';
 
 import { registrateOrganisation } from '../../apiservices/registrate';
-import { getInputValues } from '../../selectors';
+import { getInputValues, getArray } from '../../selectors';
 
 const RegistrateOrganisationContainer = styled.div`
   display: flex;
@@ -14,6 +15,17 @@ const RegistrateOrganisationContainer = styled.div`
   align-self: flex-start;
   flex-direction: column;
   height: 100%;
+  width: 100%;
+`;
+
+const EmailEndingsUl = styled.ul`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
   width: 100%;
 `;
 
@@ -30,7 +42,6 @@ export const RegistrateOrganisation = (props) => {
         placeholder='Organisation´s name'
         page={PAGE}
         validate='onserver'
-        addBtn={value => onAddToArray(PAGE, 'emailEndings', value)}
       />
       <Input
         id='email'
@@ -60,18 +71,38 @@ export const RegistrateOrganisation = (props) => {
   );
 };
 
+const renderEmailEndingBadges = (props) => {
+  const { store } = props;
+  const emailEndings = getArray(store, PAGE, 'emailEndings');
+  if (!emailEndings || emailEndings.length <= 0) {
+    return null;
+  }
+  return emailEndings && emailEndings.map(endings => (
+    <Badge page={PAGE} name='emailEndings' id={endings.id} key={endings.id} title={endings.value} secondary/>
+  ));
+};
+
 export const EmailEndings = (props) => {
-  const { store, registrationStep, onAddToArray } = props;
+  const {
+    store,
+    registrationStep,
+    onAddToArray,
+    generateGUID,
+  } = props;
   const registrateValues = getInputValues(store, PAGE, ['emailEndings']);
   return (
     <RegistrateOrganisationContainer>
       <Input
-        id='emailEndings'
+        id='emailEndingsInput'
         width='50'
         placeholder='Email endings'
         page={PAGE}
         validate='onclient'
+        addBtn={value => onAddToArray(PAGE, 'emailEndings', { value, id: generateGUID() })}
       />
+      <EmailEndingsUl>
+        {renderEmailEndingBadges(props)}
+      </EmailEndingsUl>
       <Button title="Back" width='50' onClick={() => registrationStep('REG_NEW_ORGANISATION')}/>
       <Button
         title="Next"

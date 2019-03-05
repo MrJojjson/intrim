@@ -66,7 +66,8 @@ const DisplayRegistrationStep = (props) => {
   if (registrationStep === 'REG_INIT') {
     return <RegistrationInit {...props}/>;
   }
-  return <RegistrationInit {...props}/>;
+  return <EmailEndings {...props}/>;
+  // return <RegistrationInit {...props}/>;
 };
 
 const DisplayRegistrationText = (props, text) => {

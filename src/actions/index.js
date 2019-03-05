@@ -43,3 +43,15 @@ export const onAddToArray = (page, name, object) => (dispatch) => {
     object,
   });
 };
+
+/* ON REMOVE */
+export const onRemoveFromArray = (page, name, id) => (dispatch) => {
+  console.log('name', name);
+  console.log('id', id);
+  dispatch({
+    type: 'ON_REMVOE_FROM_ARRAY',
+    page,
+    name,
+    id,
+  });
+};
