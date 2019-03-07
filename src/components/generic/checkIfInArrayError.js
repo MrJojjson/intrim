@@ -12,7 +12,7 @@ import {
   errorColor,
 } from '../../css';
 
-const ValidationError = styled.span`
+const CheckIfInArrayError = styled.span`
   color: ${deafultLightColor()};
   position: absolute;
   bottom: -${padding}px;
@@ -30,10 +30,10 @@ const ValidationError = styled.span`
   z-index:100;
 `;
 
-const VldErr = props => (
-  <ValidationError {...props}>
+const CIIAError = props => (
+  <CheckIfInArrayError {...props}>
     <Text secondary>{props.show || ''}</Text>
-  </ValidationError>
+  </CheckIfInArrayError>
 );
 
-export default VldErr;
+export default CIIAError;

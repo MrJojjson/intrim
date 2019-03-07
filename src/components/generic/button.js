@@ -50,6 +50,7 @@ const AddButton = styled.button`
   height: 100%;
   width: 40px;
   ${props => props.valid !== undefined && !props.valid && disabled};
+  ${props => props.disabled && disabled};
 `;
 
 const valid = (props) => {
@@ -68,11 +69,12 @@ const Btn = (props) => {
     onClick,
     validation,
     addBtn,
+    removeInputText,
     inputValue,
   } = props;
   if (addBtn) {
     return (
-      <AddButton {...props} onClick={() => addBtn(inputValue)}>
+      <AddButton {...props} onClick={() => [addBtn(inputValue), removeInputText()]}>
         <Icon name='plus'/>
       </AddButton>
     );

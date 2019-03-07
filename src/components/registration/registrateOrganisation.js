@@ -5,6 +5,8 @@ import Badge from '../../container/generic/badge';
 import Button from '../../container/generic/button';
 import Input from '../../container/generic/input';
 
+import { ButtonParent } from '../parents';
+
 import { registrateOrganisation } from '../../apiservices/registrate';
 import { getInputValues, getArray } from '../../selectors';
 
@@ -53,7 +55,7 @@ export const RegistrateOrganisation = (props) => {
       <Input
         id='password'
         width='50'
-        placeholder='Organisation´s admin password'
+        placeholder='Admin password'
         page={PAGE}
         secure
         validate='onserver'
@@ -99,16 +101,23 @@ export const EmailEndings = (props) => {
         page={PAGE}
         validate='onclient'
         addBtn={value => onAddToArray(PAGE, 'emailEndings', { value, id: generateGUID() })}
+        checkIfInArray='emailEndings'
       />
       <EmailEndingsUl>
         {renderEmailEndingBadges(props)}
       </EmailEndingsUl>
-      <Button title="Back" width='50' onClick={() => registrationStep('REG_NEW_ORGANISATION')}/>
-      <Button
-        title="Next"
-        width='50'
-        onClick={() => registrateOrganisation(registrateValues)}
-      />
+      <ButtonParent width='100'>
+        <Button
+          title="Back"
+          width='100'
+          onClick={() => registrationStep('REG_NEW_ORGANISATION')}
+        />
+        <Button
+          title="Next"
+          width='100'
+          onClick={() => registrateOrganisation(registrateValues)}
+        />
+      </ButtonParent>
     </RegistrateOrganisationContainer>
   );
 };

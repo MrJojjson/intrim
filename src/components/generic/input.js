@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { getErrorValidation, getInputValue } from '../../selectors';
+import { getErrorValidation, getInputValue, getCheckIfInArrayValidation } from '../../selectors';
 
 import ValidationError from '../../container/generic/validationError';
+import CheckIfInArrayError from '../../container/generic/checkIfInArrayError';
+
 import Button from './button';
 
 import {
@@ -64,6 +66,26 @@ const onBlurEvent = (props) => {
   return validateOnServer(page, id, value);
 };
 
+const alreadyAddedToArray = (props) => {
+  const { store, page, checkIfInArray } = props;
+  return getCheckIfInArrayValidation(store, page, checkIfInArray, inputValue(props));
+};
+
+const renderAddButton = (props) => {
+  const {
+    id,
+    changeInputText,
+    page,
+  } = props;
+  return (
+    <Button
+      {...props}
+      removeInputText={() => changeInputText(page, id, '')}
+      inputValue={inputValue(props)}
+      disabled={alreadyAddedToArray(props)}
+    />
+  );
+};
 
 const Inp = (props) => {
   const {
@@ -74,6 +96,7 @@ const Inp = (props) => {
     page,
     secure,
     addBtn,
+    checkIfInArray,
   } = props;
   return (
     <InputContainer {...props}>
@@ -85,7 +108,8 @@ const Inp = (props) => {
         {...props}
       />
       {validate && <ValidationError show={getErrorValidation(store, page, id)}/>}
-      {addBtn && <Button {...props} inputValue={inputValue(props)}/>}
+      {checkIfInArray && <CheckIfInArrayError show={alreadyAddedToArray(props)}/>}
+      {addBtn && renderAddButton(props)}
     </InputContainer>
   );
 };
