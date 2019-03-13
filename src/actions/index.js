@@ -44,10 +44,17 @@ export const onAddToArray = (page, name, object) => (dispatch) => {
   });
 };
 
+export const onAddPasswordStrength = (page, name, value) => (dispatch) => {
+  dispatch({
+    type: 'ON_ADD_PASSWORD_STRENGTH',
+    page,
+    name,
+    value,
+  });
+};
+
 /* ON REMOVE */
 export const onRemoveFromArray = (page, name, id) => (dispatch) => {
-  console.log('name', name);
-  console.log('id', id);
   dispatch({
     type: 'ON_REMVOE_FROM_ARRAY',
     page,

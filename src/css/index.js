@@ -21,6 +21,7 @@ export const heightTopPanel = '70px';
 
 export const elementHeight = 30;
 export const iconSize = 'sm';
+export const fontSize = 16;
 
 export const margin = 10;
 export const padding = 10;

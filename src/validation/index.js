@@ -14,6 +14,14 @@ const validateEmail = (email) => {
   return re.test(String(email).toLowerCase());
 };
 
+const validateEmailEnding = (emailEnding) => {
+  const re = (
+    /\b[a-z0-9-_.]+(\.[a-z0-9]+)+/i
+  );
+  const firstLetterIsAnAt = /^[@]/;
+  return re.test(emailEnding) && !firstLetterIsAnAt.test(emailEnding);
+};
+
 const checkForIdAndValue = (dispatch, page, id, value) => {
   if (!id) {
     return { success: false, data: 'Id must be set' };
@@ -26,7 +34,9 @@ const checkForIdAndValue = (dispatch, page, id, value) => {
 
 export const validateOnServer = (dispatch, page, id, value) => {
   checkForIdAndValue(dispatch, page, id, value);
-  if (id.toLowerCase() === 'email') {
+
+  const idToLowerCase = id.toLowerCase();
+  if (idToLowerCase === 'email') {
     if (value.length === 0) {
       return dispatch(addValidationError(page, id, 'Please add a value'));
     }
@@ -51,6 +61,12 @@ export const validateOnClient = (dispatch, page, id, value) => {
       return dispatch(removeValidationError(page, id));
     }
     return dispatch(addValidationError(page, id, 'Two or more characters'));
+  }
+  if (idToLowerCase === 'emailendingsinput') {
+    if (validateEmailEnding(value)) {
+      return dispatch(removeValidationError(page, id));
+    }
+    return dispatch(addValidationError(page, id, 'Must be an email'));
   }
   return false;
 };

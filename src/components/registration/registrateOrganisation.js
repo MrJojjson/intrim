@@ -101,7 +101,9 @@ export const EmailEndings = (props) => {
         page={PAGE}
         validate='onclient'
         addBtn={value => onAddToArray(PAGE, 'emailEndings', { value, id: generateGUID() })}
+        addBtnValidation={['emailEndingsInput']}
         checkIfInArray='emailEndings'
+        staticPlaceholder='@'
       />
       <EmailEndingsUl>
         {renderEmailEndingBadges(props)}
@@ -110,6 +112,7 @@ export const EmailEndings = (props) => {
         <Button
           title="Back"
           width='100'
+          unfilled
           onClick={() => registrationStep('REG_NEW_ORGANISATION')}
         />
         <Button

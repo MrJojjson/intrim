@@ -23,7 +23,7 @@ const Icon = styled.span`
 
 const Icn = props => (
   <Icon {...props}>
-    <FontAwesomeIcon icon={props.name || 'envelope'} size={iconSize}/>
+    <FontAwesomeIcon icon={props.name} size={iconSize}/>
   </Icon>
 );
 

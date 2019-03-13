@@ -3,7 +3,7 @@ import axios from 'axios';
 const baseURL = 'http://127.0.0.1:8081/api';
 
 export const getUser = () => {
-  const URL = `${baseURL}/getUser`;
+  const URL = `${baseURL}/user/getUser`;
   const email = 'johansjoberg88@gmail.com';
   axios.post(URL, {
     email,
@@ -17,7 +17,7 @@ export const getUser = () => {
 };
 
 export const newUser = (message) => {
-  const URL = `${baseURL}/registrateNewUser`;
+  const URL = `${baseURL}/user/newUser`;
   const firstName = 'Johan';
   const lastName = 'Sjöberg';
   const email = 'johansjoberg88@gmail.com';
@@ -45,7 +45,7 @@ export const newUser = (message) => {
 };
 
 export const loginUser = (message) => {
-  const URL = `${baseURL}/loginUser`;
+  const URL = `${baseURL}/user/login`;
   const email = 'johansjoberg88@gmail.com';
   const password = 'test123';
 

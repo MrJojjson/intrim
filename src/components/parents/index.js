@@ -17,6 +17,8 @@ const Button = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  bottom: 0;
   flex-direction: ${props => props.dir || 'row'};
   width: calc(${props => (props.width <= 100 && props.width) || 35} + ${padding * 2}px);
 `;

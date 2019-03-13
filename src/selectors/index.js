@@ -19,4 +19,8 @@ export const getInputValues = (store, page, ids) => (
   (ids && ids.map(id => (store.inputs && store.inputs[page] && store.inputs[page][id]))) || []
 );
 
+export const getPasswordStrength = (store, page, id) => (
+  (store.inputs && store.inputs[page] && store.inputs[page][id]) || ''
+);
+
 export const getArray = (store, page, name) => (store.inputs && store.inputs[page] && store.inputs[page][name]) || [];

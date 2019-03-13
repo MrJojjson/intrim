@@ -5,7 +5,7 @@ import { removeValidationError, addValidationError } from '../actions';
 const baseURL = 'http://127.0.0.1:8081/api';
 
 export const validateUser = (dispatch, page, id, value) => {
-  const URL = `${baseURL}/validateUser`;
+  const URL = `${baseURL}/validation/user`;
   axios.post(URL, {
     id,
     value,
@@ -25,7 +25,7 @@ export const validateUser = (dispatch, page, id, value) => {
 };
 
 export const validateOrganisation = (dispatch, page, id, value) => {
-  const URL = `${baseURL}/validateOrganisation`;
+  const URL = `${baseURL}/validation/organisation`;
   axios.post(URL, {
     id,
     value,

@@ -68,6 +68,17 @@ export default (state = initState, action) => {
           },
         },
       };
+    case 'ON_ADD_PASSWORD_STRENGTH':
+      return {
+        ...state,
+        inputs: {
+          ...state.inputs,
+          [action.page]: {
+            ...state.inputs[action.page],
+            [action.name]: action.value,
+          },
+        },
+      };
       // inputs: {
       //   ...state.inputs,
       //   [action.page]: {

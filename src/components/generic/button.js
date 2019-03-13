@@ -21,7 +21,7 @@ const Button = styled.button`
   justify-content: center;
   align-items: center;
   color: ${deafultLightColor()};
-  background: ${props => (props.secondary && secondaryColor()) || primaryColor()};
+  background: ${props => (props.unfilled ? 'none' : props.secondary && secondaryColor()) || primaryColor()};
   margin: ${margin}px;
   padding: ${padding}px;
   border: 1px solid ${props => (props.secondary && secondaryColor()) || primaryColor()};
@@ -37,18 +37,17 @@ const AddButton = styled.button`
   justify-content: center;
   align-items: center;
   position: absolute;
-  right: ${-padding}px;
+  right: 0px;
   top:0;
   color: ${deafultLightColor()};
-  background: ${props => (props.secondary && secondaryColor()) || primaryColor()};
+  background: ${props => (props.unfilled ? 'none' : props.secondary && secondaryColor()) || primaryColor()};
   padding: ${padding}px;
   border: 1px solid ${props => (props.secondary && secondaryColor()) || primaryColor()};
   border-bottom-right-radius: ${borderRadius}px;
   border-top-right-radius: ${borderRadius}px;
   cursor: pointer;
-  min-height: ${elementHeight + padding * 2}px;
   height: 100%;
-  width: 40px;
+  width: ${padding * 4}px;
   ${props => props.valid !== undefined && !props.valid && disabled};
   ${props => props.disabled && disabled};
 `;
@@ -58,9 +57,11 @@ const valid = (props) => {
     store,
     page,
     validation,
+    addBtnValidation,
     validateButton,
   } = props;
-  return validateButton(store, page, validation);
+  const validationArray = validation || addBtnValidation || [];
+  return validateButton(store, page, validationArray);
 };
 
 const Btn = (props) => {
@@ -71,17 +72,23 @@ const Btn = (props) => {
     addBtn,
     removeInputText,
     inputValue,
+    addBtnValidation,
   } = props;
   if (addBtn) {
+    const inputVal = `@${inputValue}`;
     return (
-      <AddButton {...props} onClick={() => [addBtn(inputValue), removeInputText()]}>
+      <AddButton
+        {...props}
+        onClick={() => [addBtn(inputVal), removeInputText()]}
+        valid={addBtnValidation && valid(props)}
+      >
         <Icon name='plus'/>
       </AddButton>
     );
   }
   return (
     <Button {...props} onClick={onClick} valid={validation && valid(props)}>
-      <Text format='md' secondary>
+      <Text format='md' buttonText secondary={props.secondary} unfilled={props.unfilled}>
         {title || 'Button Default'}
       </Text>
     </Button>

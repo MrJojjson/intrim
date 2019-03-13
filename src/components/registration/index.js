@@ -47,6 +47,7 @@ const RegistrationSteps = styled.div`
   justify-content: center;
   align-self: flex-start;
   flex-direction: column;
+  position: relative;
   background: ${deafultLightColor()};
   height: 100%;
   width:60%;
@@ -66,8 +67,7 @@ const DisplayRegistrationStep = (props) => {
   if (registrationStep === 'REG_INIT') {
     return <RegistrationInit {...props}/>;
   }
-  return <EmailEndings {...props}/>;
-  // return <RegistrationInit {...props}/>;
+  return <RegistrationInit {...props}/>;
 };
 
 const DisplayRegistrationText = (props, text) => {

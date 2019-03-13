@@ -10,12 +10,16 @@ import {
   faTimes,
   faSearch,
   faPlus,
+  faGrimace,
+  faSurprise,
+  faGrinStars,
+  faDizzy,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Initiater from './initiater';
 import store from './store';
 
-library.add(faEnvelope, faKey, faTimes, faSearch, faPlus);
+library.add(faEnvelope, faKey, faTimes, faSearch, faPlus, faGrimace, faSurprise, faGrinStars, faDizzy);
 
 ReactDOM.render(
   <Provider store={store()}>

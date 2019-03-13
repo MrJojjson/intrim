@@ -21,7 +21,12 @@ const Text = styled.p`
   )}px;
   padding:0;
   margin:0;
-  color: ${props => (props.secondary && deafultLightColor()) || deafultDarkColor()};
+  color: ${props => (
+    (props.buttonText && !props.secondary && props.unfilled && primaryColor())
+    || (props.buttonText && props.secondary && secondaryColor())
+    || (props.buttonText && deafultLightColor())
+    || (!props.buttonText && props.secondary && deafultLightColor())
+  ) || deafultDarkColor()};
 `;
 
 const Txt = props => (

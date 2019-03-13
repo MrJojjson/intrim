@@ -28,6 +28,7 @@ const ValidationError = styled.span`
   border-bottom-right-radius: ${borderRadius}px;
   transition: all 0.35s;
   z-index:100;
+  box-sizing: border-box;
 `;
 
 const VldErr = props => (
